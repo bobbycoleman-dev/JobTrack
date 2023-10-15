@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="71px" height="44px" viewBox="0 0 71 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>LogoDark</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HeaderImg" transform="translate(-126, 0.7246)" fill="#000000" fill-rule="nonzero">
+            <g id="LogoDark" transform="translate(126.9082, 0)">
+                <g id="I" transform="translate(43.2012, 16.9102)">
+                    <polygon id="Path" points="0 25.3652344 5.30859375 25.3652344 5.30859375 0 0 0"></polygon>
+                </g>
+                <g id="I-Copy" transform="translate(50.2012, 24.9102)">
+                    <polygon id="Path" points="0 17.365234 5.30859375 17.365234 5.30859375 0 0 0"></polygon>
+                </g>
+                <g id="I-Copy-2" transform="translate(57.2012, 21.9102)">
+                    <polygon id="Path" points="0 20.365234 5.30859375 20.365234 5.30859375 0 0 0"></polygon>
+                </g>
+                <g id="I-Copy-3" transform="translate(64.2012, 18.9102)">
+                    <polygon id="Path" points="0 23.365234 5.30859375 23.365234 5.30859375 0 0 0"></polygon>
+                </g>
+                <path d="M28.7402344,28.9160156 C28.7402344,37.8222656 23.4375,43.0078125 14.2675781,43.0078125 C5.53710938,43.0078125 0.234375,37.8222656 0.029296875,29.8828125 L0,29.6191406 L8.58398438,29.6191406 L8.61328125,29.7949219 C8.75976562,33.0761719 10.6933594,35.3613281 14.1796875,35.3613281 C17.9003906,35.3613281 19.8925781,33.1054688 19.8925781,28.828125 L19.8925781,0 L69.5097656,0 L69.5097656,7.29492187 L41.015625,7.29492188 L41.015625,42.2753906 L32.1679687,42.2753906 L32.1679687,7.29492188 L28.74,7.294 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
