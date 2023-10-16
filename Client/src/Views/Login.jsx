@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import HeaderImg from "../assets/HeaderImg.jpeg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../Context/AuthContext";
 
 const defaultForm = {
 	LogEmail: "",
@@ -9,6 +10,7 @@ const defaultForm = {
 };
 
 const Login = () => {
+	const { dispatch } = useContext(AuthContext);
 	const [form, setForm] = useState(defaultForm);
 	const [errors, setErrors] = useState(null);
 	const navigate = useNavigate();
@@ -27,12 +29,9 @@ const Login = () => {
 				data: form,
 				contentType: "application/json"
 			});
-			const loggedUser = {
-				UserId: addUser.data.userId,
-				FirstName: addUser.data.firstName,
-				LastName: addUser.data.lastName,
-				Email: addUser.data.email
-			};
+			delete addUser.data.confirmPassword;
+			const loggedUser = addUser.data;
+			dispatch({ type: "LOGIN", payload: loggedUser });
 			localStorage.setItem("user", JSON.stringify(loggedUser));
 			document.getElementById("htmlTheme").setAttribute("data-theme", JSON.parse(localStorage.getItem("theme")));
 			setErrors(null);

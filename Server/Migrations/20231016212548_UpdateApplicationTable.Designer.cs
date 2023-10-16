@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Server.Models;
 
@@ -10,9 +11,10 @@ using Server.Models;
 namespace Server.Migrations
 {
     [DbContext(typeof(JobTrackContext))]
-    partial class JobTrackContextModelSnapshot : ModelSnapshot
+    [Migration("20231016212548_UpdateApplicationTable")]
+    partial class UpdateApplicationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,9 +86,6 @@ namespace Server.Migrations
                     b.Property<int>("ApplicationId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<string>("InterviewAddress")
                         .HasColumnType("longtext");
 
@@ -114,9 +113,6 @@ namespace Server.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("ThankYouSentDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("InterviewId");

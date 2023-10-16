@@ -17,7 +17,7 @@ const Main = ({ view }) => {
 		}
 	};
 	return (
-		<div className="ml-48 p-3">
+		<div className="ml-48 p-5">
 			<NavMenu />
 			{renderView()}
 		</div>

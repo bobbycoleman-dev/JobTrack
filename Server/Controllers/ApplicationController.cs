@@ -14,30 +14,30 @@ namespace Server.Controllers
         }
 
         //! Get all
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Application>>> GetApplications()
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<IEnumerable<Application>>> GetApplications(int userId)
         {
-            return await _context.Applications.ToListAsync();
+            return await _context.Applications.Where(a => a.UserId == userId).ToListAsync();
         }
 
         //! Get one
-        [HttpGet("{id}")]
+        [HttpGet("{userId}/view/{id}")]
         public async Task<ActionResult<Application>> GetApplication(int id)
         {
             // Find the item in question
-            var todoItem = await _context.Applications.FindAsync(id);
+            var application = await _context.Applications.FindAsync(id);
             // Check to see if we got back null, in which case return NotFound
-            if (todoItem == null)
+            if (application == null)
             {
                 return NotFound();
             }
             // Otherwise, return the item
-            return todoItem;
+            return application;
         }
 
         //! Create one
         [HttpPost]
-        public async Task<ActionResult<Application>> PostTodoItem([FromBody] Application newApplication)
+        public async Task<ActionResult<Application>> CreateApplicationLog([FromBody] Application newApplication)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace Server.Controllers
         }
 
         //! Update one
-        [HttpPost("update/{id}")]
+        [HttpPost("{userId}/update/{id}")]
         public async Task<IActionResult> UpdateTodoItem(int id, [FromBody] Application updatedApplication)
         {
             // If the id from the route doesn't match the id of the item we passed along, throw a bad request

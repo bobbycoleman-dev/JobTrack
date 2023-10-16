@@ -1,3 +1,4 @@
+using System.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -105,6 +106,45 @@ namespace Server.Controllers
             }
 
             return UserInDb;
+        }
+
+        //! Update User Info
+        [HttpPost("{id}/update")]
+        public async Task<ActionResult<User>> UpdateUser(int id, [FromBody] OnboardUser onboardForm)
+        {
+            if (id != onboardForm.OnboardUserId)
+            {
+                return BadRequest();
+            }
+
+            User? originalUser = await _context.Users.FindAsync(id);
+
+            if (originalUser == null)
+            {
+                return NotFound();
+            }
+
+            originalUser.LinkedIn = onboardForm.OnboardLinkedIn;
+            originalUser.GitHub = onboardForm.OnboardGitHub;
+            originalUser.PortfolioWebsite = onboardForm.OnboardPortfolioWebsite;
+            originalUser.PersonalWebsite = onboardForm.OnboardPersonalWebsite;
+            originalUser.OtherWebsite = onboardForm.OnboardOtherWebsite;
+            originalUser.DailySubmitGoal = onboardForm.OnboardDailySubmitGoal;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) when (!UserExists(id))
+            {
+                return NotFound();
+            }
+            return originalUser;
+        }
+
+        private bool UserExists(int id)
+        {
+            return _context.Users.Any(e => e.UserId == id);
         }
     }
 }

@@ -38,11 +38,14 @@ namespace Server.Models
 
         public string? Notes { get; set; }
 
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
+
 
         public int UserId { get; set; }
         public User? Applicant { get; set; }
 
-        public List<Interview> Interviews { get; set; }
+        public List<Interview> Interviews { get; set; } = new();
 
     }
 }

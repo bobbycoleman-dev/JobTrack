@@ -1,14 +1,16 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Main from "./Views/Main";
 import Register from "./Views/Register";
 import Login from "./Views/Login";
 import Onboarding from "./Views/Onboarding";
 
 function App() {
+	const navigate = useNavigate();
 	useEffect(() => {
 		if (JSON.parse(localStorage.getItem("user"))) {
 			document.getElementById("htmlTheme").setAttribute("data-theme", JSON.parse(localStorage.getItem("theme")));
+			navigate("/dashboard");
 		} else {
 			document.getElementById("htmlTheme").setAttribute("data-theme", "night");
 		}

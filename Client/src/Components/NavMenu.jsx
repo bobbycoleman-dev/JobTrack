@@ -1,4 +1,4 @@
-import { BarChart, PersonVideo, Gear, Power } from "react-bootstrap-icons";
+import { BarChart, PersonVideo, Gear, Power, FileEarmarkPlus } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
 import ThemeSwitcher from "./ThemeSwitcher";
 import JTLogo from "../assets/JTLogo.svg";
@@ -56,10 +56,15 @@ const NavMenu = () => {
 							<Gear /> Settings
 						</Link>
 					</li>
+					<li>
+						<button className="btn btn-primary w-full mb-4 text-lg">
+							<FileEarmarkPlus /> Log App
+						</button>
+					</li>
 				</ul>
 			</div>
 			<div>
-				<button className="btn btn-primary w-full mb-4" onClick={logoutUser}>
+				<button className="btn btn-primary w-full mb-4 text-lg" onClick={logoutUser}>
 					<Power /> Logout
 				</button>
 				{theme && (
