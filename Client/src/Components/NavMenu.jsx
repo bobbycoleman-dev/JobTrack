@@ -1,17 +1,20 @@
-import { BarChart, PersonVideo, Gear } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
+import { BarChart, PersonVideo, Gear, Power } from "react-bootstrap-icons";
+import { Link, useNavigate } from "react-router-dom";
 import ThemeSwitcher from "./ThemeSwitcher";
 import JTLogo from "../assets/JTLogo.svg";
 import JTLogoBlack from "../assets/JTLogoBlack.svg";
 import { useState } from "react";
+
 const NavMenu = () => {
 	const [theme, setTheme] = useState(JSON.parse(localStorage.getItem("theme")));
-	const [themeType, setThemeType] = useState("");
+	const [themeType, setThemeType] = useState(JSON.parse(localStorage.getItem("themeType")));
+	const navigate = useNavigate();
 
 	const selectTheme = (selectedTheme) => {
 		const splitTheme = selectedTheme.split(" ");
 		setTheme(splitTheme[0]);
 		localStorage.setItem("theme", JSON.stringify(splitTheme[0]));
+		localStorage.setItem("themeType", JSON.stringify(splitTheme[1]));
 		document.getElementById("htmlTheme").setAttribute("data-theme", splitTheme[0]);
 
 		setThemeType(splitTheme[1]);
@@ -24,6 +27,12 @@ const NavMenu = () => {
 			default:
 				return <img src={JTLogo} alt="JTLogo" />;
 		}
+	};
+
+	const logoutUser = () => {
+		localStorage.removeItem("user");
+		document.getElementById("htmlTheme").setAttribute("data-theme", "night");
+		navigate("/login");
 	};
 
 	return (
@@ -50,9 +59,15 @@ const NavMenu = () => {
 				</ul>
 			</div>
 			<div>
-				<p className="text-xs mb-2 text-center">
-					Current Theme: {theme.charAt(0).toUpperCase() + theme.slice(1)}
-				</p>
+				<button className="btn btn-primary w-full mb-4" onClick={logoutUser}>
+					<Power /> Logout
+				</button>
+				{theme && (
+					<p className="text-xs mb-2 text-center">
+						Current Theme: {theme.charAt(0).toUpperCase() + theme.slice(1)}
+					</p>
+				)}
+
 				<ThemeSwitcher onThemeSelect={selectTheme} />
 			</div>
 		</div>

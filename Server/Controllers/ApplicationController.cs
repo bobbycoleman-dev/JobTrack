@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Server.Models;
 namespace Server.Controllers
 {
-    [Route("api/JobTrack")]
+    [Route("api/applications")]
     [ApiController]
     public class ApplicationController : ControllerBase
     {

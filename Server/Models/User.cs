@@ -14,13 +14,11 @@ namespace Server.Models
 
         [Required]
         [DisplayName("First Name")]
-        [MinLength(2)]
         [MaxLength(45)]
         public string FirstName { get; set; }
 
         [Required]
         [DisplayName("Last Name")]
-        [MinLength(2)]
         [MaxLength(45)]
         public string LastName { get; set; }
 
@@ -45,7 +43,7 @@ namespace Server.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        public List<Application> SubmittedApplications { get; set; }
+        public List<Application>? SubmittedApplications { get; set; }
 
         [NotMapped]
         [Required]

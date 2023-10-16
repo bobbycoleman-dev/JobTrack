@@ -1,7 +1,50 @@
+import { useState } from "react";
 import HeaderImg from "../assets/HeaderImg.jpeg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const defaultForm = {
+	FirstName: "",
+	LastName: "",
+	Email: "",
+	Password: "",
+	ConfirmPassword: ""
+};
 
 const Register = () => {
+	const [form, setForm] = useState(defaultForm);
+	const [errors, setErrors] = useState(null);
+	const navigate = useNavigate();
+
+	const onChangeHandler = (e) => {
+		setForm({ ...form, [e.target.name]: e.target.value });
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		try {
+			const addUser = await axios({
+				url: "https://localhost:7261/api/users/register",
+				method: "post",
+				data: form,
+				contentType: "application/json"
+			});
+			const loggedUser = {
+				UserId: addUser.data.userId,
+				FirstName: addUser.data.firstName,
+				LastName: addUser.data.lastName,
+				Email: addUser.data.email
+			};
+			localStorage.setItem("user", JSON.stringify(loggedUser));
+			setErrors(null);
+			navigate("/onboarding");
+		} catch (err) {
+			console.log(err);
+			setErrors(err.response.data.errors);
+		}
+	};
+
 	return (
 		<div className="h-screen flex justify-center items-center">
 			<div className="card w-96 glass">
@@ -11,7 +54,7 @@ const Register = () => {
 				<div className="card-body items-center text-center">
 					<h2 className="card-title">Register</h2>
 					<div>
-						<form>
+						<form onSubmit={handleSubmit}>
 							<div className="mb-3">
 								<input
 									type="text"
@@ -19,7 +62,10 @@ const Register = () => {
 									id="FirstName"
 									placeholder="First Name"
 									className="input input-bordered w-full max-w-xs"
+									onChange={onChangeHandler}
+									value={form.FirstName}
 								/>
+								{errors ? <span className="text-red-500">{errors.FirstName}</span> : ""}
 							</div>
 							<div className="mb-3">
 								<input
@@ -28,7 +74,10 @@ const Register = () => {
 									id="LastName"
 									placeholder="Last Name"
 									className="input input-bordered w-full max-w-xs"
+									onChange={onChangeHandler}
+									value={form.LastName}
 								/>
+								{errors ? <span className="text-red-500">{errors.LastName}</span> : ""}
 							</div>
 							<div className="mb-3">
 								<input
@@ -37,7 +86,10 @@ const Register = () => {
 									id="Email"
 									placeholder="Email"
 									className="input input-bordered w-full max-w-xs"
+									onChange={onChangeHandler}
+									value={form.Email}
 								/>
+								{errors ? <span className="text-red-500">{errors.Email}</span> : ""}
 							</div>
 							<div className="mb-3">
 								<input
@@ -46,7 +98,10 @@ const Register = () => {
 									id="Password"
 									placeholder="Password"
 									className="input input-bordered w-full max-w-xs"
+									onChange={onChangeHandler}
+									value={form.Password}
 								/>
+								{errors ? <span className="text-red-500">{errors.Password}</span> : ""}
 							</div>
 							<div className="mb-3">
 								<input
@@ -55,13 +110,17 @@ const Register = () => {
 									id="ConfirmPassword"
 									placeholder="ConfirmPassword"
 									className="input input-bordered w-full max-w-xs"
+									onChange={onChangeHandler}
+									value={form.ConfirmPassword}
 								/>
+								{errors ? <span className="text-red-500">{errors.ConfirmPassword}</span> : ""}
+							</div>
+							<div className="card-actions justify-center">
+								<button className="btn btn-primary">Register</button>
 							</div>
 						</form>
 					</div>
-					<div className="card-actions justify-end">
-						<button className="btn btn-primary">Register</button>
-					</div>
+
 					<Link to="/login">Have an account? Login here</Link>
 				</div>
 			</div>
