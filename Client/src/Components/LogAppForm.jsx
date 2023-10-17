@@ -1,7 +1,8 @@
-import { Clipboard } from "react-bootstrap-icons";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { Clipboard } from "react-bootstrap-icons";
+import { AuthContext } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const defaultForm = {
 	CompanyName: "",
@@ -9,7 +10,7 @@ const defaultForm = {
 	PositionTitle: "",
 	ApplicationWebsite: "",
 	Location: "",
-	Type: "",
+	Type: "Remote",
 	Status: "Applied",
 	ContactEmail: "",
 	Notes: "",
@@ -20,6 +21,7 @@ const LogAppForm = () => {
 	const {
 		state: { user }
 	} = useContext(AuthContext);
+	const navigate = useNavigate();
 	const [form, setForm] = useState(defaultForm);
 	const [userLinks, setUserLinks] = useState([]);
 	const [copySuccess, setCopySuccess] = useState("");
@@ -63,16 +65,18 @@ const LogAppForm = () => {
 				data: form,
 				contentType: "application/json"
 			});
+			console.log(logApp);
+			navigate("/dashboard");
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
 	return (
-		<div>
-			<h3 className="text-center text-2xl w-3/4 font-bold mb-4">Log a new Application</h3>
-			<p className="w-3/4 text-center text-xs mb-2">Copy your social links for your applications</p>
-			<div className="flex gap-4 justify-center w-3/4 mb-2">
+		<div className="w-3/4 mx-auto">
+			<h3 className="text-center text-2xl  font-bold mb-4">Log a new Application</h3>
+			<p className=" text-center text-xs mb-2">Copy your social links for your applications</p>
+			<div className="flex gap-4 justify-center  mb-2">
 				{userLinks &&
 					userLinks.map((link, idx) => {
 						if (link.link != "") {
@@ -88,11 +92,11 @@ const LogAppForm = () => {
 					})}
 			</div>
 
-			<div className="text-center w-3/4 h-4 align-middle mb-4">
+			<div className="text-center  h-4 align-middle mb-4">
 				{copySuccess && <span className="text-center text-primary">{copySuccess}</span>}
 			</div>
 
-			<form onSubmit={handleSubmit} className="w-3/4 flex flex-col items-center">
+			<form onSubmit={handleSubmit} className=" flex flex-col items-center">
 				<div className="flex gap-5">
 					<div className="space-y-4 w-1/2">
 						<input
@@ -135,11 +139,7 @@ const LogAppForm = () => {
 							placeholder="Location (City, State)"
 							onChange={handleChange}
 						/>
-						<select
-							name="Type"
-							className="select select-bordered w-full"
-							defaultValue={"Remote"}
-							onChange={handleChange}>
+						<select name="Type" className="select select-bordered w-full" onChange={handleChange}>
 							<option disabled>--Select Type of Position--</option>
 							<option value="Remote">Remote</option>
 							<option value="On-Site">On-Site</option>
@@ -147,11 +147,7 @@ const LogAppForm = () => {
 						</select>
 					</div>
 					<div className="w-1/2 space-y-4">
-						<select
-							name="Status"
-							defaultValue="Applied"
-							className="select select-bordered w-full"
-							onChange={handleChange}>
+						<select name="Status" className="select select-bordered w-full" onChange={handleChange}>
 							<option disabled>--Select Status--</option>
 							<option value="Applied">Applied</option>
 							<option value="Contacted">Contacted</option>

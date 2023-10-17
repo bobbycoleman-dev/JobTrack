@@ -1,8 +1,8 @@
-import { useState, useContext } from "react";
-import HeaderImg from "../assets/HeaderImg.jpeg";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
+import HeaderImg from "../assets/HeaderImg.jpeg";
 
 const defaultForm = {
 	FirstName: "",

@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
-import ThemeSwitcher from "../Components/ThemeSwitcher";
 import axios from "axios";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ThemeSwitcher from "../Components/ThemeSwitcher";
 import { AuthContext } from "../Context/AuthContext";
 
 const onboardForm = {

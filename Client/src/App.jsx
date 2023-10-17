@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import Main from "./Views/Main";
-import Register from "./Views/Register";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Views/Login";
+import Main from "./Views/Main";
 import Onboarding from "./Views/Onboarding";
+import Register from "./Views/Register";
 
 function App() {
 	const navigate = useNavigate();
@@ -24,6 +24,8 @@ function App() {
 				<Route path="dashboard" element={<Main />} />
 				<Route path="interviews" element={<Main view="interviews" />} />
 				<Route path="settings" element={<Main view="settings" />} />
+				<Route path="applications/log" element={<Main view="logApp" />} />
+				<Route path="applications/:appId" element={<Main view="viewApp" />} />
 			</Routes>
 		</div>
 	);

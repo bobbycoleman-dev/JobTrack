@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { themes } from "../Constants/themes";
 
 const ThemeSwitcher = (props) => {

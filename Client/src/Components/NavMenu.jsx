@@ -1,9 +1,9 @@
-import { BarChart, PersonVideo, Gear, Power, FileEarmarkPlus } from "react-bootstrap-icons";
+import { useState } from "react";
+import { BarChart, FileEarmarkPlus, Gear, PersonVideo, Power } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
-import ThemeSwitcher from "./ThemeSwitcher";
 import JTLogo from "../assets/JTLogo.svg";
 import JTLogoBlack from "../assets/JTLogoBlack.svg";
-import { useState } from "react";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const NavMenu = () => {
 	const [theme, setTheme] = useState(JSON.parse(localStorage.getItem("theme")));
@@ -57,9 +57,9 @@ const NavMenu = () => {
 						</Link>
 					</li>
 					<li>
-						<button className="btn btn-primary w-full mb-4 text-lg">
+						<Link to="/applications/log" className="btn btn-primary w-full mb-4 text-lg">
 							<FileEarmarkPlus /> Log App
-						</button>
+						</Link>
 					</li>
 				</ul>
 			</div>

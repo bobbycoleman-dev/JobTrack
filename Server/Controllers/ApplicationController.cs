@@ -17,11 +17,11 @@ namespace Server.Controllers
         [HttpGet("{userId}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplications(int userId)
         {
-            return await _context.Applications.Where(a => a.UserId == userId).ToListAsync();
+            return await _context.Applications.OrderByDescending(a => a.CreatedAt).Where(a => a.UserId == userId).ToListAsync();
         }
 
         //! Get one
-        [HttpGet("{userId}/view/{id}")]
+        [HttpGet("view/{id}")]
         public async Task<ActionResult<Application>> GetApplication(int id)
         {
             // Find the item in question
@@ -43,7 +43,6 @@ namespace Server.Controllers
             {
                 _context.Applications.Add(newApplication);
                 await _context.SaveChangesAsync();
-                // This uses the GetTodoItem route we wrote above
                 return CreatedAtAction(
                     nameof(GetApplication),
                     new { id = newApplication.ApplicationId },
@@ -51,7 +50,6 @@ namespace Server.Controllers
             }
             else
             {
-                // This is what will allow us to get error messages for our front end
                 return BadRequest(ModelState);
             }
         }
