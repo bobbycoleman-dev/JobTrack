@@ -17,7 +17,9 @@ namespace Server.Controllers
         [HttpGet("{userId}")]
         public async Task<ActionResult<IEnumerable<Application>>> GetApplications(int userId)
         {
-            return await _context.Applications.OrderByDescending(a => a.CreatedAt).Where(a => a.UserId == userId).ToListAsync();
+            List<Application> appsList = await _context.Applications.Where(a => a.UserId == userId).OrderByDescending(a => a.ApplicationId).ToListAsync();
+
+            return appsList;
         }
 
         //! Get one

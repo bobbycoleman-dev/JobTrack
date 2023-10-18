@@ -21,6 +21,13 @@ const ApplicationTable = ({ appsList }) => {
 			case "positionSearch":
 				newList = appsList.filter((app) => app.positionTitle.toLowerCase().includes(value));
 				break;
+			case "statusSearch":
+				if (value == "all") {
+					newList = appsList;
+				} else {
+					newList = appsList.filter((app) => app.status.toLowerCase() == value);
+				}
+				break;
 			default:
 				break;
 		}
@@ -32,11 +39,10 @@ const ApplicationTable = ({ appsList }) => {
 	const handleSort = (e) => {
 		let newList;
 		switch (e.target.value) {
-			case "dateNew":
-				newList = appsList.sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0));
-				break;
 			case "dateOld":
-				newList = appsList.sort((a, b) => (a.createdAt > b.createdAt ? 1 : a.createdAt < b.createdAt ? -1 : 0));
+				newList = appsList.sort((a, b) =>
+					a.applicationId > b.applicationId ? 1 : a.applicationId < b.applicationId ? -1 : 0
+				);
 				break;
 			case "companyAZ":
 				newList = appsList.sort((a, b) => (a.companyName.toLowerCase() < b.companyName.toLowerCase() ? -1 : 1));
@@ -55,6 +61,9 @@ const ApplicationTable = ({ appsList }) => {
 				);
 				break;
 			default:
+				newList = appsList.sort((a, b) =>
+					a.applicationId < b.applicationId ? 1 : a.applicationId > b.applicationId ? -1 : 0
+				);
 				break;
 		}
 		setSortedList(newList);
@@ -72,10 +81,12 @@ const ApplicationTable = ({ appsList }) => {
 				return sortedList.map((app, idx) => {
 					return <AppTableRow key={idx} app={app} />;
 				});
-			default:
+			case "default":
 				return appsList.map((app, idx) => {
 					return <AppTableRow key={idx} app={app} />;
 				});
+			default:
+				return;
 		}
 	};
 
@@ -104,6 +115,16 @@ const ApplicationTable = ({ appsList }) => {
 					placeholder="Search Position"
 					onChange={handleSearch}
 				/>
+				<select name="statusSearch" className="select select-bordered w-64" onChange={handleSearch}>
+					<option value="all">All Statuses</option>
+					<option value="applied">Applied</option>
+					<option value="contacted">Contacted</option>
+					<option value="interview">Interview</option>
+					<option value="post-interview">Post-Interview</option>
+					<option value="negotiation">Negotiation</option>
+					<option value="rejected">Rejected</option>
+					<option value="declined">Declined</option>
+				</select>
 			</div>
 			<table className="table  table-pin-rows">
 				<thead>

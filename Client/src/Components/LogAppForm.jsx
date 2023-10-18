@@ -153,6 +153,8 @@ const LogAppForm = () => {
 							<option value="Contacted">Contacted</option>
 							<option value="Rejected">Rejected</option>
 							<option value="Interview">Interview</option>
+							<option value="Post-Interview">Post-Interview</option>
+							<option value="Negotiation">Negotiation</option>
 							<option value="Declined">Declined</option>
 							<option value="Accepted">Accepted</option>
 						</select>

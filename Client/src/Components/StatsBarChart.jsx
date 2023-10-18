@@ -1,0 +1,49 @@
+import { useEffect, useState } from "react";
+import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, ResponsiveContainer } from "recharts";
+
+const StatsBarChart = ({ stats }) => {
+	const [chartData, setChartData] = useState([]);
+
+	useEffect(() => {
+		const data = [
+			{
+				status: "Applied",
+				apps: 0
+			},
+			{
+				status: "Contacted",
+				apps: 0
+			},
+			{
+				status: "Rejected",
+				apps: 0
+			},
+			{
+				status: "Interview",
+				apps: 0
+			},
+			{
+				status: "Declined",
+				apps: 0
+			}
+		];
+		for (let i = 0; i < stats.length; i++) {
+			data[i].apps = stats[i];
+		}
+		setChartData(data);
+	}, [stats]);
+
+	return (
+		<ResponsiveContainer width="50%" height="100%">
+			<BarChart data={chartData}>
+				<CartesianGrid strokeDasharray="3 3" />
+				<XAxis dataKey="status" />
+				<YAxis />
+				<Tooltip />
+				<Bar dataKey="apps" fill="#8884d8" />
+			</BarChart>
+		</ResponsiveContainer>
+	);
+};
+
+export default StatsBarChart;
