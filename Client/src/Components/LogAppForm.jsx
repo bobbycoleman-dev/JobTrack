@@ -163,7 +163,8 @@ const LogAppForm = () => {
 							cols="30"
 							rows="10"
 							className="textarea textarea-bordered w-full"
-							placeholder="Notes"></textarea>
+							placeholder="Notes"
+							onChange={handleChange}></textarea>
 					</div>
 				</div>
 

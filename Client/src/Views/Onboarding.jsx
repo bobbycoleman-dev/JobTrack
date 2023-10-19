@@ -42,7 +42,7 @@ const Onboarding = () => {
 		console.log(form);
 		try {
 			const updatedUser = await axios({
-				url: `https://localhost:7261/api/users/${user.userId}/update`,
+				url: `https://localhost:7261/api/users/${user.userId}/onboard`,
 				method: "post",
 				data: updatedForm,
 				ContentType: "application/json"

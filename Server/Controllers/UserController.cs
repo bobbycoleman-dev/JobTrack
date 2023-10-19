@@ -108,9 +108,9 @@ namespace Server.Controllers
             return UserInDb;
         }
 
-        //! Update User Info
-        [HttpPost("{id}/update")]
-        public async Task<ActionResult<User>> UpdateUser(int id, [FromBody] OnboardUser onboardForm)
+        //! Onboard User
+        [HttpPost("{id}/onboard")]
+        public async Task<ActionResult<User>> OnboardUser(int id, [FromBody] OnboardUser onboardForm)
         {
             if (id != onboardForm.OnboardUserId)
             {
@@ -130,6 +130,45 @@ namespace Server.Controllers
             originalUser.PersonalWebsite = onboardForm.OnboardPersonalWebsite;
             originalUser.OtherWebsite = onboardForm.OnboardOtherWebsite;
             originalUser.DailySubmitGoal = onboardForm.OnboardDailySubmitGoal;
+            originalUser.UpdatedAt = DateTime.Now;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) when (!UserExists(id))
+            {
+                return NotFound();
+            }
+            return originalUser;
+        }
+
+        //! Onboard User
+        [HttpPost("{id}/update")]
+        public async Task<ActionResult<User>> UpdateUser(int id, [FromBody] UpdateUser updateForm)
+        {
+            if (id != updateForm.UpdateUserId)
+            {
+                return BadRequest();
+            }
+
+            User? originalUser = await _context.Users.FindAsync(id);
+
+            if (originalUser == null)
+            {
+                return NotFound();
+            }
+
+            originalUser.FirstName = updateForm.UpdateFirstName;
+            originalUser.LastName = updateForm.UpdateLastName;
+            originalUser.Email = updateForm.UpdateEmail;
+            originalUser.LinkedIn = updateForm.UpdateLinkedIn;
+            originalUser.GitHub = updateForm.UpdateGitHub;
+            originalUser.PortfolioWebsite = updateForm.UpdatePortfolioWebsite;
+            originalUser.PersonalWebsite = updateForm.UpdatePersonalWebsite;
+            originalUser.OtherWebsite = updateForm.UpdateOtherWebsite;
+            originalUser.DailySubmitGoal = updateForm.UpdateDailySubmitGoal;
+            originalUser.UpdatedAt = DateTime.Now;
 
             try
             {
