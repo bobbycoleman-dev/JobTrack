@@ -8,6 +8,7 @@ import StatsBarChart from "../Components/StatsBarChart";
 import StatsLineChart from "../Components/StatsLineChart";
 import { useNavigate } from "react-router-dom";
 import { createLineChartData } from "../Functions/LineChartData";
+import TableSearchFields from "../Components/TableSearchFields";
 
 const Dashboard = () => {
 	const navigate = useNavigate();
@@ -16,12 +17,17 @@ const Dashboard = () => {
 	} = useContext(AuthContext);
 	const [allApps, setAllApps] = useState([]);
 	const [completedToday, setCompletedToday] = useState(0);
+	const [applied, setApplied] = useState(0);
 	const [heardFrom, setHeardFrom] = useState(0);
 	const [interviews, setInterviews] = useState(0);
 	const [rejected, setRejected] = useState(0);
 	const [declined, setDeclined] = useState(0);
 	const [topApp, setTopApp] = useState(null);
 	const [lineChartData, setLineChartData] = useState([]);
+	// const [searchValue, setSearchValue] = useState("");
+	// const [searchName, setSearchName] = useState("");
+	// const [sortValue, setSortValue] = useState("");
+	// const [rerender, setRerender] = useState(false);
 
 	const date = new Date().toISOString().slice(0, 10);
 
@@ -29,6 +35,7 @@ const Dashboard = () => {
 		if (user) {
 			axios.get(`https://localhost:7261/api/applications/${user.userId}`).then((res) => {
 				let count = 0;
+				let appliedCount = 0;
 				let heardCount = 0;
 				let interviewCount = 0;
 				let rejectedCount = 0;
@@ -37,6 +44,9 @@ const Dashboard = () => {
 					const appDate = app.createdAt.slice(0, 10);
 					if (appDate.includes(date)) count++;
 					switch (app.status) {
+						case "Applied":
+							appliedCount++;
+							break;
 						case "Contacted":
 							heardCount++;
 							break;
@@ -63,6 +73,7 @@ const Dashboard = () => {
 				});
 				const newList = res.data.toSorted((a, b) => a - b);
 				setCompletedToday(count);
+				setApplied(appliedCount);
 				setHeardFrom(heardCount);
 				setInterviews(interviewCount);
 				setRejected(rejectedCount);
@@ -73,10 +84,17 @@ const Dashboard = () => {
 		}
 	}, [user, topApp]);
 
+	// const handleSearchSort = (searchValue = "", searchName = "", sortValue = "") => {
+	// 	setSearchValue(searchValue);
+	// 	setSearchName(searchName);
+	// 	setSortValue(sortValue);
+	// 	setRerender(!rerender);
+	// };
+
 	return (
 		<>
 			{user ? (
-				<div className="h-full space-y-12 mb-12">
+				<div className="h-full space-y-12 pb-20">
 					<h2 className="text-center text-3xl">Hello, {user && user.firstName}!</h2>
 					<div className="flex flex-col justify-between h-full">
 						<div className="flex flex-col h-1/2 justify-between mb-4">
@@ -100,10 +118,11 @@ const Dashboard = () => {
 							)}
 							<div className="flex justify-center h-1/2">
 								<StatsLineChart appData={lineChartData} />
-								<StatsBarChart stats={[allApps.length, heardFrom, interviews, rejected, declined]} />
+								<StatsBarChart stats={[applied, heardFrom, interviews, rejected, declined]} />
 							</div>
 						</div>
-						<div className="h-1/2">
+						<div className="h-1/2 border border-primary rounded-lg shadow-xl pt-2 ">
+							{/* <TableSearchFields handleSearchSort={handleSearchSort} /> */}
 							<ApplicationTable appsList={allApps} />
 						</div>
 					</div>

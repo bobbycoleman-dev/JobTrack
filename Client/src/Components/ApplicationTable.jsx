@@ -91,7 +91,7 @@ const ApplicationTable = ({ appsList }) => {
 	};
 
 	return (
-		<div className="overflow-x-auto h-[88%] p-3 border border-primary rounded-lg shadow-xl">
+		<div className="">
 			<div className="flex justify-evenly mb-3">
 				<select name="sort" className="select select-bordered w-64" onChange={handleSort}>
 					<option value="dateNew">Newest Submitted</option>
@@ -126,21 +126,23 @@ const ApplicationTable = ({ appsList }) => {
 					<option value="declined">Declined</option>
 				</select>
 			</div>
-			<table className="table  table-pin-rows">
-				<thead>
-					<tr>
-						<th>Company</th>
-						<th>Position</th>
-						<th>Company Website</th>
-						<th>Position Website</th>
-						<th>Location</th>
-						<th>Type</th>
-						<th>Status</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>{renderList()}</tbody>
-			</table>
+			<div className="overflow-x-auto h-[600px]">
+				<table className="table table-pin-rows">
+					<thead>
+						<tr>
+							<th>Company</th>
+							<th>Position</th>
+							<th>Location</th>
+							<th>Type</th>
+							<th>Status</th>
+							<th>Position Website</th>
+							<th>Company Website</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>{renderList()}</tbody>
+				</table>
+			</div>
 		</div>
 	);
 };
