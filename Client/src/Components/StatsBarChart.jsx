@@ -23,6 +23,10 @@ const StatsBarChart = ({ stats }) => {
 				apps: 0
 			},
 			{
+				status: "Post-Interview",
+				apps: 0
+			},
+			{
 				status: "Declined",
 				apps: 0
 			}

@@ -20,6 +20,7 @@ const Dashboard = () => {
 	const [applied, setApplied] = useState(0);
 	const [heardFrom, setHeardFrom] = useState(0);
 	const [interviews, setInterviews] = useState(0);
+	const [postInterviews, setPostInterviews] = useState(0);
 	const [rejected, setRejected] = useState(0);
 	const [declined, setDeclined] = useState(0);
 	const [topApp, setTopApp] = useState(null);
@@ -38,6 +39,7 @@ const Dashboard = () => {
 				let appliedCount = 0;
 				let heardCount = 0;
 				let interviewCount = 0;
+				let postInterviewCount = 0;
 				let rejectedCount = 0;
 				let declinedCount = 0;
 				res.data.map((app) => {
@@ -63,6 +65,7 @@ const Dashboard = () => {
 							declinedCount++;
 							break;
 						case "Post-Interview":
+							postInterviewCount++;
 							if (topApp && topApp.status == "Interview") setTopApp(app);
 							break;
 						case "Negotiation":
@@ -76,6 +79,7 @@ const Dashboard = () => {
 				setApplied(appliedCount);
 				setHeardFrom(heardCount);
 				setInterviews(interviewCount);
+				setPostInterviews(postInterviewCount);
 				setRejected(rejectedCount);
 				setDeclined(declinedCount);
 				setLineChartData(createLineChartData(res.data));
@@ -111,14 +115,23 @@ const Dashboard = () => {
 									onClick={() => navigate(`/applications/${topApp.applicationId}`)}>
 									<p className="text-center text-xl font-bold underline">Top Application</p>
 									<div className="flex gap-4 justify-center">
-										<p>Position: {topApp.positionTitle}</p>
-										<p>Company: {topApp.companyName}</p>
+										<p>
+											<span className="underline">Position:</span> {topApp.positionTitle}
+										</p>
+										<p>
+											<span className="underline">Company:</span> {topApp.companyName}
+										</p>
+										<p>
+											<span className="underline">Status:</span> {topApp.status}
+										</p>
 									</div>
 								</div>
 							)}
 							<div className="flex justify-center h-1/2">
 								<StatsLineChart appData={lineChartData} />
-								<StatsBarChart stats={[applied, heardFrom, interviews, rejected, declined]} />
+								<StatsBarChart
+									stats={[applied, heardFrom, rejected, interviews, postInterviews, declined]}
+								/>
 							</div>
 						</div>
 						<div className="h-1/2 border border-primary rounded-lg shadow-xl pt-2 ">
