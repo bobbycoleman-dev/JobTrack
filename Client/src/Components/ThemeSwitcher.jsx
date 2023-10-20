@@ -10,7 +10,7 @@ const ThemeSwitcher = (props) => {
 				<option disabled>--Select Theme--</option>
 				{themes.map((theme, idx) => {
 					return (
-						<option key={idx} value={`${theme.theme} ${theme.type}`}>
+						<option key={idx} value={JSON.stringify(theme)}>
 							{theme.title}
 						</option>
 					);

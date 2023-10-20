@@ -26,13 +26,12 @@ const Onboarding = () => {
 	};
 
 	const selectTheme = (selectedTheme) => {
-		const splitTheme = selectedTheme.split(" ");
-		// setTheme(splitTheme[0]);
-		localStorage.setItem("theme", JSON.stringify(splitTheme[0]));
-		localStorage.setItem("themeType", JSON.stringify(splitTheme[1]));
-		document.getElementById("htmlTheme").setAttribute("data-theme", splitTheme[0]);
+		const theme = JSON.parse(selectedTheme);
+		setTheme(theme.theme);
+		localStorage.setItem("theme", selectedTheme);
+		document.getElementById("htmlTheme").setAttribute("data-theme", theme.theme);
 
-		setThemeType(splitTheme[1]);
+		setThemeType(theme.type);
 	};
 
 	const handleSubmit = async (e) => {

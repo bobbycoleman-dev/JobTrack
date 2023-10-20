@@ -33,7 +33,9 @@ const Login = () => {
 			const loggedUser = addUser.data;
 			dispatch({ type: "LOGIN", payload: loggedUser });
 			localStorage.setItem("user", JSON.stringify(loggedUser));
-			document.getElementById("htmlTheme").setAttribute("data-theme", JSON.parse(localStorage.getItem("theme")));
+			document
+				.getElementById("htmlTheme")
+				.setAttribute("data-theme", JSON.parse(localStorage.getItem("theme")).theme);
 			setErrors(null);
 			navigate("/dashboard");
 		} catch (err) {

@@ -3,6 +3,11 @@ import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, ResponsiveContaine
 
 const StatsBarChart = ({ stats }) => {
 	const [chartData, setChartData] = useState([]);
+	const [color, setColor] = useState(JSON.parse(localStorage.getItem("theme")));
+
+	useEffect(() => {
+		setColor(JSON.parse(localStorage.getItem("theme")));
+	}, [color]);
 
 	useEffect(() => {
 		const data = [
@@ -44,7 +49,7 @@ const StatsBarChart = ({ stats }) => {
 				<XAxis dataKey="status" />
 				<YAxis />
 				<Tooltip />
-				<Bar dataKey="apps" fill="#8884d8" />
+				<Bar dataKey="apps" fill={color.primary} />
 			</BarChart>
 		</ResponsiveContainer>
 	);
