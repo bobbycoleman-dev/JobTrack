@@ -8,7 +8,6 @@ import StatsBarChart from "../Components/StatsBarChart";
 import StatsLineChart from "../Components/StatsLineChart";
 import { useNavigate } from "react-router-dom";
 import { createLineChartData } from "../Functions/LineChartData";
-import TableSearchFields from "../Components/TableSearchFields";
 
 const Dashboard = () => {
 	const navigate = useNavigate();
@@ -25,10 +24,7 @@ const Dashboard = () => {
 	const [declined, setDeclined] = useState(0);
 	const [topApp, setTopApp] = useState(null);
 	const [lineChartData, setLineChartData] = useState([]);
-	// const [searchValue, setSearchValue] = useState("");
-	// const [searchName, setSearchName] = useState("");
-	// const [sortValue, setSortValue] = useState("");
-	// const [rerender, setRerender] = useState(false);
+	const [reload, setReload] = useState(false);
 
 	const date = new Date().toISOString().slice(0, 10);
 
@@ -86,14 +82,11 @@ const Dashboard = () => {
 				setAllApps(newList);
 			});
 		}
-	}, [user, topApp]);
+	}, [user, topApp, reload]);
 
-	// const handleSearchSort = (searchValue = "", searchName = "", sortValue = "") => {
-	// 	setSearchValue(searchValue);
-	// 	setSearchName(searchName);
-	// 	setSortValue(sortValue);
-	// 	setRerender(!rerender);
-	// };
+	const reloadData = () => {
+		setReload(!reload);
+	};
 
 	return (
 		<>
@@ -127,7 +120,7 @@ const Dashboard = () => {
 									</div>
 								</div>
 							)}
-							<div className="flex justify-center h-1/2">
+							<div className="flex -ml-12 h-1/2">
 								<StatsLineChart appData={lineChartData} />
 								<StatsBarChart
 									stats={[applied, heardFrom, rejected, interviews, postInterviews, declined]}
@@ -135,8 +128,7 @@ const Dashboard = () => {
 							</div>
 						</div>
 						<div className="h-1/2 border border-primary rounded-lg shadow-xl pt-2 ">
-							{/* <TableSearchFields handleSearchSort={handleSearchSort} /> */}
-							<ApplicationTable appsList={allApps} />
+							<ApplicationTable appsList={allApps} reloadData={reloadData} />
 						</div>
 					</div>
 				</div>

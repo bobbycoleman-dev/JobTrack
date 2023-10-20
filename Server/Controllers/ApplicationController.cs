@@ -60,21 +60,19 @@ namespace Server.Controllers
         [HttpPost("{userId}/update/{id}")]
         public async Task<IActionResult> UpdateTodoItem(int id, [FromBody] Application updatedApplication)
         {
-            // If the id from the route doesn't match the id of the item we passed along, throw a bad request
+
             if (id != updatedApplication.ApplicationId)
             {
                 return BadRequest();
             }
-            // Find the original item
+
             var originalApplication = await _context.Applications.FindAsync(id);
-            // Verify the original item exists
+
             if (originalApplication == null)
             {
                 return NotFound();
             }
-            // Added to update item
-            // originalApplication.Name = todoItem.Name;
-            // originalApplication.IsComplete = todoItem.IsComplete;
+
 
             try
             {
@@ -85,6 +83,56 @@ namespace Server.Controllers
                 return NotFound();
             }
             return NoContent();
+        }
+
+        //! Update Status Only
+        [HttpPost("update/status/{id}/{status}")]
+        public async Task<ActionResult<Application>> UpdateApplicationStatus(int id, string status)
+        {
+            Application? originalApplication = await _context.Applications.FindAsync(id);
+
+            if (originalApplication == null)
+            {
+                return NotFound();
+            }
+
+            originalApplication.Status = status;
+            originalApplication.UpdatedAt = DateTime.Now;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) when (!ApplicationExists(id))
+            {
+                return NotFound();
+            }
+            return originalApplication;
+        }
+
+        //! Update Notes Only
+        [HttpPost("update/notes/{id}")]
+        public async Task<ActionResult<Application>> UpdateApplicationNotes(int id, [FromBody] UpdateAppNotes notes)
+        {
+            Application? originalApplication = await _context.Applications.FindAsync(id);
+
+            if (originalApplication == null)
+            {
+                return NotFound();
+            }
+
+            originalApplication.Notes = notes.UpdateNotes;
+            originalApplication.UpdatedAt = DateTime.Now;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) when (!ApplicationExists(id))
+            {
+                return NotFound();
+            }
+            return originalApplication;
         }
 
         //! Delete one

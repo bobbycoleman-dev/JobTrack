@@ -36,7 +36,7 @@ namespace Server.Models
         [DisplayName("Contact Email")]
         public string? ContactEmail { get; set; }
 
-        public string? Notes { get; set; }
+        public string Notes { get; set; } = "";
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;

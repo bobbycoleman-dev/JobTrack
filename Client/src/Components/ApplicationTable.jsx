@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import AppTableRow from "./AppTableRow";
+import axios from "axios";
 
-const ApplicationTable = ({ appsList }) => {
+const ApplicationTable = ({ appsList, reloadData }) => {
 	const [filteredList, setFilteredList] = useState([]);
 	const [sortedList, setSortedList] = useState([]);
 	const [listState, setListState] = useState("default");
@@ -71,19 +72,33 @@ const ApplicationTable = ({ appsList }) => {
 		setRerender(!rerender);
 	};
 
+	const updateAppStatus = async (appId, status) => {
+		try {
+			const updatedApp = await axios({
+				url: `https://localhost:7261/api/applications/update/status/${appId}/${status}`,
+				method: "post",
+				data: status,
+				ContentType: "application/json"
+			});
+			reloadData();
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	const renderList = () => {
 		switch (listState) {
 			case "filter":
 				return filteredList.map((app, idx) => {
-					return <AppTableRow key={idx} app={app} />;
+					return <AppTableRow key={idx} app={app} handleUpdateStatus={updateAppStatus} />;
 				});
 			case "sort":
 				return sortedList.map((app, idx) => {
-					return <AppTableRow key={idx} app={app} />;
+					return <AppTableRow key={idx} app={app} handleUpdateStatus={updateAppStatus} />;
 				});
 			case "default":
 				return appsList.map((app, idx) => {
-					return <AppTableRow key={idx} app={app} />;
+					return <AppTableRow key={idx} app={app} handleUpdateStatus={updateAppStatus} />;
 				});
 			default:
 				return;
