@@ -138,6 +138,7 @@ const ApplicationTable = ({ appsList }) => {
 							<th>Position Website</th>
 							<th>Company Website</th>
 							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>{renderList()}</tbody>

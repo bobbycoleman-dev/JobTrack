@@ -1,3 +1,4 @@
+import { CalendarPlus } from "react-bootstrap-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AppInfo from "../Components/AppInfo";
@@ -40,6 +41,11 @@ const ViewApplication = ({ appId }) => {
 					<div className="flex gap-12 justify-evenly">
 						<AppInfo title={"Contact Email"} info={app.contactEmail} />
 						<AppInfo title={"Next Interview"} info={"N/A"} />
+					</div>
+					<div className="pt-5">
+						<button className="btn btn-primary">
+							<CalendarPlus /> Schedule Interview
+						</button>
 					</div>
 				</div>
 			)}
