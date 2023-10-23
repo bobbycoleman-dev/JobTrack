@@ -79,11 +79,11 @@ I was recently a full-time student at Coding Dojo for full-stack software develo
 <p align="center">Dashboard (Light Theme Variants)</p>
 <p align="center"><img src="https://github.com/bobbycoleman-dev/JobTrack/blob/main/Screenshots/DashboardLight1.jpg" alt="light1" width="400"/> <img src="https://github.com/bobbycoleman-dev/JobTrack/blob/main/Screenshots/DashbaordLight2.jpg" alt="light2" width="400"/></p>
 
-<p align="center">Log Application View Application</p>
-<p align="center"><img src="https://github.com/bobbycoleman-dev/array-v2/blob/main/screenshots/edit-profile.jpg" alt="array-banner" width="400"/> <img src="https://github.com/bobbycoleman-dev/JobTrack/blob/main/Screenshots/ViewApp.jpg" alt="view-app" width="400"/></p>
+<p align="center">Log Application & View Application</p>
+<p align="center"><img src="https://github.com/bobbycoleman-dev/JobTrack/blob/main/Screenshots/LogApp.jpg" alt="log-app" width="400"/> <img src="https://github.com/bobbycoleman-dev/JobTrack/blob/main/Screenshots/ViewApp.jpg" alt="view-app" width="400"/></p>
 
-<p align="center">Light Mode, Tablet View, Mobile View</p>
-<p align="center"><img src="https://github.com/bobbycoleman-dev/array-v2/blob/main/screenshots/light-mode.jpg" alt="array-banner" width="400"/> <img src="https://github.com/bobbycoleman-dev/array-v2/blob/main/screenshots/responsive-tablet.jpg" alt="array-banner" width="250"/> <img src="https://github.com/bobbycoleman-dev/array-v2/blob/main/screenshots/responsive-mobile.jpg" alt="array-banner" height="250"/></p>
+<p align="center">Interview Calendar & User Settings</p>
+<p align="center"><img src="https://github.com/bobbycoleman-dev/JobTrack/blob/main/Screenshots/Interviews.jpg" alt="interview-calendar" width="400"/> <img src="https://github.com/bobbycoleman-dev/JobTrack/blob/main/Screenshots/UserSettings.jpg" alt="user-settings" width="400"/> </p>
 
 ---
 
