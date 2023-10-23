@@ -1,7 +1,7 @@
 <h1 align="center">JobTrack</h1>
-<h3 align="center">A job application tracking ssystem for jobseekers</h3>
+<h3 align="center">A job application tracking system for jobseekers</h3>
 
-<p align="center"><img src="https://github.com/bobbycoleman-dev/JobTrack/Banner.jpg" alt="jobtrack-banner" align="center"/></p>
+<p align="center"><img src="https://github.com/bobbycoleman-dev/JobTrack/blob/main/Banner.jpg" alt="jobtrack-banner" align="center"/></p>
 
 ---
 
@@ -20,11 +20,7 @@
 
 ## Background
 
-I knew I wanted to build a single-page app (SPA) that people would enjoy using, but also have a purpose to use it. So, one night while thinking about a piece of code I had been working on earlier that day, I was thinking about how I could share it.
-
-Sharing code is a big portion of being a part of the dev community as well as sharing code that you created and are proud of. And as far as I knew, there wasn't a platform where the main purpose was to share code and connect with other dev with similar interests.
-
-And so, [Array] was born.
+I was recently a full-time student at Coding Dojo for full-stack software developement, and with it coming to an end, I knew I had my work cut out for me to find my next opportunity. While using Google Sheets is a viable opttion, I wanted more out of tracking my job applications. My final stack in the bootcamp was C#/.NET and I found it to be the perfect stack for developing this project. 
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -34,26 +30,38 @@ And so, [Array] was born.
 
 -   Login & Registration
 -   Maintain Login State after browser close
--   Post creation
-    -   Built in Code Block
-    -   Language Selection (top 25)
-    -   Syntax Highlighting
-    -   280 character Description
--   Post Commenting
--   Post Liking
--   Personal Profile
-    -   Editable Name field
-    -   Editable Username field (must be unique)
-    -   Editable Description
-    -   Profile image (next feature)
-    -   Banner image (next feature)
-    -   Followers and Following
--   Search and Filter Posts by Language and/or Description
--   Search users
--   Follow users
--   Trending Languages sections shows top posted languages
--   Fully Responsive Design from mobile to ultra-wide
--   Light/Dark Mode compatible based on user system preference
+-   Onboarding after registration to gather further jobseeker info
+      - Social links
+      - Set Daily Submit Goal
+      - Select theme
+-   Dashboard for displaying:
+      - Applications submitted
+      - Applications heard back from
+      - Applications Rejected
+      - Daily Goal Completion
+      - Number of Interviews Scheduled
+      - Top Application
+      - Daily submitted chart
+      - Status chart
+      - Submitted Application data
+- Submitted Applications table:
+      - Searchable, filterable, sortable
+      - Status update directly from table
+      - View application navigation
+- View indidivdual applications
+      - Compnay Name
+      - Position Title
+      - Location
+      - Position Type
+      - Company Website
+      - Position Website
+      - Current Status
+      - Interviews
+      - Contacts
+      - Notes
+- Your social links (LinkedIn, GitHub, etc) are available to copy to clipboard when submitting an application
+- Choose your app theme from multiple light or dark themes
+
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -61,18 +69,12 @@ And so, [Array] was born.
 
 ## Technologies Used
 
--   MERN Tech Stack
-    -   MongoDB
-    -   ExpressJS
-    -   ReactJS
-    -   NodeJS
--   Vite
--   Axios and RESTful API routing
--   Google Firebase Authentication
--   Server-side and Firebase validations
--   Tailwind and DailyUI
--   CodeReader
--   LocalStorage
+-   C#/.NET API backend
+-   MySQL Database
+-   React + Vite frontend
+-   ReCharts
+-   Tailwind frontend styling
+-   DaisyUI for theme generation
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -103,15 +105,17 @@ And so, [Array] was born.
 
 ## Functionality
 
-When first visiting the site, you are brought to the Login screen if you have an account, or you can travel to the Registration screen to create an account. The registration form takes your full name, a selected (unique) username, your email, and password/confirm password. After successfully registering, you are taken to the login screen to login in.
+When first visiting the site, you are brought to the Login screen if you have an account, or you can travel to the Registration screen to create an account. The registration form takes your full name, your email, and password/confirm password. After successfully registering, you are taken to the onboarding screen. Filling in the information on the onboarding screen is optional, but you can choose to complete it by filling in your social links (LinkedIn, GitHub, Portfolio, Personal Website, Other Website), choosing your daily application submit goal (defaulted at 5), and choosing your theme.
 
-After logging in, your information is stored in your personal browser local storage to maintain your login state even after closing the browser, and you are brought to the home screen which features a navigation on the left, users and trending languages on the right, and the main post feed in the middle.
+After logging in, your information is stored in your personal browser local storage to maintain your login state even after closing the browser, and you are brought to the home screen which features a navigation on the left and a beautiful dashboard that displays all the pertinant information for your applications.
 
-From the home screen, a user can post code, traverse to their personal profile, view other user profiles, and search all posts in the [Array] array.
+The navigation on the left includes a link to the dashboard, a link to a calendar that displays your scheduled interviews (future feature), your personal user settings, and a button to log an application. At the bottom of the navigation, a user can choose a new theme that will also be stored in local storage for persistance.
 
-A user can view a single post, like that post, and comment on that post. A user can also follow other users and view their own followers.
+Logging an application is a simple process by asking for the most basic information such as company name, position title, company and position websites, location, whether it is remote, hybrid, or on-site, and any notes you wish to include about the position. At the top of the log application screen are clickable texts for your submitted social links that copy them to your clipboard for quick copy and paste when submitting applications in another browser window. 
 
-Because [Array] is fully responsive, a user can also view posts and make posts from their tablet or mobile device.
+The main part of the dashboard is the table that holds all your application information for a quick search. A user can search by Company or Position, can sort by newest, oldest, compnay a-z/z-a, and position a-z/z-a, and filter by application status. The table also has quick access to the company or position website. 
+
+Lastly, the view application screen shows all the information about a single application where a user can quickly update an app status or the notes.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -119,42 +123,21 @@ Because [Array] is fully responsive, a user can also view posts and make posts f
 
 ## Design
 
-I wanted to take a mobile-first approach to my design while also ensuring it can be comfortably viewed on larger screens and in light or dark mode.
-
-The light mode design has a subtle white to light gray gradient, while the dark mode design has a pleasing blueish green gradient with light green primary colors. Dark mode also features a dark gray code block, making the syntax highlighting easy to read.
-
-The layout of [Array] intentionally leaves the left and right sections static while changing the middle section to display the information the user wants to view such as the feed, a single post, or theirs and other users profiles.
+The design for JobTrack is meant to be simple while still displaying a plethora of information that a jobseeker would want to see right as they log in. The information diplsayed at the top is quick and easy to spot, showing in the selected theme's primary color, the charts demostrate easy-to-understand data, and the table shows a lot of information without being too overwhelming. 
 
 [Return to Table of Contents](#table-of-contents)
 
 ---
 
 ## Running Locally
-
-1. You will need a MongoDB account, I used [Atlas](https://www.mongodb.com/cloud/atlas/register)
-2. You will need a [Firebase](https://firebase.google.com/) account to set up Authentication
-3. Clone the repository, run `npm i` to install dependencies
-4. Create a `.env` file for both the server and the client
-5. Server side `.env` file will need:
-
-    ```env
-    PORT=8000
-    MONGODB_URI=mongodb+srv://{username}:{password}{db_conection_string}?retryWrites=true&w=majority
-    ```
-
-6. Client side `.env` file will need (for Firebase authentication):
-
-    ```env
-    # All values auto-generated when creating a Firebase application
-    VITE_FIREBASE_APIKEY= {firebase_api_key}
-    VITE_FIREBASE_AUTH_DOMAIN= {firebase_auth_domain}
-    VITE_FIREBASE_PROJECT_ID= {project_id}
-    VITE_FIREBASE_STORAGE_BUCKET= {storage_bucket}
-    VITE_FIREBASE_MESSAGING_SENDER_ID= {messaging_sender_id}
-    VITE_FIREBASE_APP_ID= {app_id}
-    ```
-
-7. Open server in terminal, run `nodemon server.js` to start server
-8. Open client in terminal, run `npm run dev` to start client
+Prerequisites:
+    - Dotnet version 6
+    
+1. Clone the repository
+2. cd into the `Client` folder and run `npm i` to install dependencies
+3. cd into the `Server` folder and run `dotnet restore` to install the dotnet dependencies
+4. In the `appsettings.json` for the server, you will need to update the default connection string if your MySQL password is not rootroot.
+5. While in `Server`, run `dotnet watch run` or `dotnet run` to start the server
+6. cd into `Client` and run `npm run dev` to start the client side.
 
 [Return to Table of Contents](#table-of-contents)
