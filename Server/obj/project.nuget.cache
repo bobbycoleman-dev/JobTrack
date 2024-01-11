@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Oiz8GoDMX7Zk8PtUAEmx8QuAnn9FUSshybs0DJs14fWx1Q0BPCb0H69WMIx3TAS/DwXt+CKP6iD4T2TQ7VfeJw==",
+  "dgSpecHash": "CyCoEdaIaaOmFxkxhY3sHAvDBLMYWcMET4lKwgTIGFJp8MlOXlYlkK/1RQisPq4b4fQ9bx6KzxaRfQIoJocboQ==",
   "success": true,
   "projectFilePath": "/Users/bcoleman/Developer/CodingDojo/Projects/JobTrack/Server/Server.csproj",
   "expectedPackageFiles": [
@@ -29,7 +29,10 @@
     "/Users/bcoleman/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
     "/Users/bcoleman/.nuget/packages/system.collections.immutable/6.0.0/system.collections.immutable.6.0.0.nupkg.sha512",
     "/Users/bcoleman/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
-    "/Users/bcoleman/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "/Users/bcoleman/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/bcoleman/.nuget/packages/microsoft.netcore.app.ref/6.0.26/microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "/Users/bcoleman/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.26/microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
+    "/Users/bcoleman/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.26/microsoft.netcore.app.host.osx-arm64.6.0.26.nupkg.sha512"
   ],
   "logs": []
 }
