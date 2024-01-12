@@ -5,9 +5,9 @@ const StatsBarChart = ({ stats }) => {
 	const [chartData, setChartData] = useState([]);
 	const [color, setColor] = useState(JSON.parse(localStorage.getItem("theme")));
 
-	useEffect(() => {
-		setColor(JSON.parse(localStorage.getItem("theme")));
-	}, [color]);
+	// useEffect(() => {
+	// 	setColor(JSON.parse(localStorage.getItem("theme")));
+	// }, [color]);
 
 	useEffect(() => {
 		const data = [

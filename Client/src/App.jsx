@@ -9,9 +9,7 @@ function App() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		if (JSON.parse(localStorage.getItem("user"))) {
-			document
-				.getElementById("htmlTheme")
-				.setAttribute("data-theme", JSON.parse(localStorage.getItem("theme")).theme);
+			document.getElementById("htmlTheme").setAttribute("data-theme", "dark");
 			navigate("/dashboard");
 		} else {
 			document.getElementById("htmlTheme").setAttribute("data-theme", "night");

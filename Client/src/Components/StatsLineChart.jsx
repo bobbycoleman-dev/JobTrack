@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 const StatsLineChart = ({ appData }) => {
 	const [color, setColor] = useState(JSON.parse(localStorage.getItem("theme")));
 
-	useEffect(() => {
-		setColor(JSON.parse(localStorage.getItem("theme")));
-	}, [color]);
+	// useEffect(() => {
+	// 	setColor(JSON.parse(localStorage.getItem("theme")));
+	// }, [color]);
 
 	return (
 		<ResponsiveContainer width="50%" height="100%">
